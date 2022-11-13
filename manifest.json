@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Kairos Time Tracking Features",
+    "description": "Allows the user to get tue total amount of hours tracked by Kairos on a day basis",
+    "version": "1.0",
+    "icons": {
+      "128": "images/favicon.png"
+    },
+    "action": {
+        "default_icon": {
+          "128": "images/favicon.png"
+        }
+    },
+    "permissions": ["activeTab", "scripting"],    
+    "content_scripts": [
+      {
+        "matches": ["https://portal.kairoshr.es/employee/checkin*"],        
+        "js": ["js/dom_handler.js", "js/time_calc.js", "js/main.js"],
+        "css": ["styles/styles.css"]
+      }
+    ]
+  }

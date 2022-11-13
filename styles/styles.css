@@ -1,0 +1,19 @@
+#time-report-container{
+    margin-bottom: 10px;
+    background: white;
+}
+
+#time-report-container p{
+    margin: 20px 0;
+    border-top: 1px solid #d1cdcd;
+    padding-top: 5px;
+}
+
+#time-report-container #refresh-btn{
+    margin: 15px 0;
+    color: var(--white);
+    background-color: var(--light-blue);
+    border: 0;
+    border-radius: 2px !important;
+    padding: 5px 10px;
+}
