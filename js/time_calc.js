@@ -1,18 +1,20 @@
 function mainTimeCalc(){
   let timeEntries = getTimeEntriesFromHTML();
 
-  if(timeEntries.length === 0){
-    alert("No tienes fichajes registrados");
+  if(timeEntries.length > 0){
+    let hoursByDate = calculateHours(timeEntries);
+    let totalHours = 0;
+    let totalHoursByDate = calculateTotalHoursByDate(hoursByDate);
+
+    console.log(hoursByDate);
+    console.log(totalHoursByDate);
+
+    if(totalHoursByDate.length > 1){
+      totalHours = calculateTotalHours(totalHoursByDate);
+    }
+
+    insertTimeReport(totalHoursByDate, totalHours);  
   }
-
-  let hoursByDate = calculateHours(timeEntries);
-
-  let totalHoursByDate = calculateTotalHoursByDate(hoursByDate);
-
-  console.log(hoursByDate);
-  console.log(totalHoursByDate);
-
-  insertTimeReport(totalHoursByDate);
 }
 
 function getHoursDiff(startDate, endDate){
@@ -139,4 +141,13 @@ function createDateTimeFromString(date, time){
 function getSecondsFromTime(time){
   let timeArray = time.split(":");
   return parseInt(timeArray[0] * 3600) + parseInt(timeArray[1] * 60) + parseInt(timeArray[2]);
+}
+
+function calculateTotalHours(totalHoursByDate){
+  let totalHours = 0;
+  totalHoursByDate.forEach((element) => {
+    totalHours += parseFloat(element.hours);
+  });
+
+  return totalHours;
 }

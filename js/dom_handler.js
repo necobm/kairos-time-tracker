@@ -1,4 +1,4 @@
-function insertTimeReport(totalHoursByDate){
+function insertTimeReport(totalHoursByDate, totalHours = 0){
     let container = document.querySelector("div#controller > div.row > div.col-md-6:nth-child(2)");
     let div = document.createElement("div");
     div.classList.add("row");
@@ -8,6 +8,10 @@ function insertTimeReport(totalHoursByDate){
     totalHoursByDate.forEach(element => {
         html += '<p>' + element.date + ': <b>' + element.hours + ' Hrs</b></p>';    
     });
+
+    if(totalHours > 0){
+        html += '<p><b>TOTAL : ' + totalHours + ' Hrs</b></p>';
+    }
     
 
     //html += '<button type="button" class="btn btn-brand-green" id="refresh-btn"><i class="fas fa-refresh"></i> Refresh</button></div>';
