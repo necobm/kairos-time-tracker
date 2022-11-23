@@ -1,3 +1,30 @@
+function getTimeEntriesFromHTML(){
+    const dataRows = document.querySelectorAll("div#controller > div.row > div.col-md-6:nth-child(2) > div.row:nth-child(3) table.table > tbody tr");
+    let timeEntries = [];
+    if(dataRows.length > 1){
+      let hoursList = "";
+      let datesList = "";
+      dataRows.forEach(element => {
+          let timeEntry = {"hour":"", "date":"", "type":""};
+          let hourTd = element.querySelector('td:nth-child(3)');
+          let dateTd = element.querySelector('td:nth-child(1)');
+          let typeTd = element.querySelector('td:nth-child(4)');
+          if(hourTd !== null && dateTd !== null && typeTd !== null){
+              timeEntry.time = hourTd.textContent;
+              timeEntry.date = dateTd.textContent;
+              timeEntry.type = typeTd.textContent;
+  
+              timeEntries.push(timeEntry);
+              
+          }
+          
+      });
+    }    
+    console.log(timeEntries);
+    return timeEntries;
+    
+}
+
 function insertTimeReport(totalHoursByDate, totalHours = 0){
     let container = document.querySelector("div#controller > div.row > div.col-md-6:nth-child(2)");
     let div = document.createElement("div");
